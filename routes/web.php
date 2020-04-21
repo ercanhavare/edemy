@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('front');
+    $featuredSeries = \App\Series::take(3)->latest()->get();
+    return view('front',compact('featuredSeries'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/series', 'SeriesController@index')->name('series.index');
