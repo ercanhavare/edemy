@@ -14,7 +14,7 @@
                                         {{\Illuminate\Support\Str::words($s->description,3)}}
                                     </b-card-text>
                                     <template v-slot:footer>
-                                        <b-button {{--href="{{route('series.show',$s)}}"--}} variant="primary">Play</b-button>
+                                        <b-button href="{{route('series.show',$s->id)}}" variant="primary">Play</b-button>
                                     </template>
                                 </b-card>
                             </b-col>

@@ -11,6 +11,8 @@ class SeriesSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Series::class, 10)->create();
+        factory(\App\Series::class, 10)->create()->each(function ($series) {
+            $series->videos()->saveMany(factory(\App\Video::class,10)->make());
+        });
     }
 }

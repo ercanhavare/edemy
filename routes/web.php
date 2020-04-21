@@ -23,4 +23,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/series', 'SeriesController@index')->name('series.index');
+Route::resource('/series', 'SeriesController');
