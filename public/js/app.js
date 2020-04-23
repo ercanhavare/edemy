@@ -4261,14 +4261,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['video'],
+  props: ['video', 'nextVideoUrl'],
   mounted: function mounted() {
+    var _this = this;
+
     console.log('Component mounted.');
     var videoOptions = {
       id: this.video.vimeo_video_id,
       width: 500
     };
     var player = new _vimeo_player__WEBPACK_IMPORTED_MODULE_0__["default"]('edemy-player', videoOptions);
+    player.on('ended', function () {
+      console.log('video ended', _this.nextVideoUrl);
+      window.location.replace(_this.nextVideoUrl);
+    });
   }
 });
 

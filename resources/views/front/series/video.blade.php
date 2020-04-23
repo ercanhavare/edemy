@@ -8,7 +8,7 @@
                 <source src="{{asset('example.mp4')}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>--}}
-            <video-player :video="{{$video}}"></video-player>
+            <video-player :video="{{$video}}" next-video-url="{{$next_video_url}}"></video-player>
         </section>
 
         <section class="mb-5 pt-5 text-center">

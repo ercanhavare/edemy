@@ -8,7 +8,7 @@
     import Player from '@vimeo/player'
 
     export default {
-        props: ['video'],
+        props: ['video','nextVideoUrl'],
         mounted() {
             console.log('Component mounted.');
 
@@ -18,6 +18,12 @@
             };
 
             var player = new Player('edemy-player', videoOptions);
+
+            player.on('ended',()=>{
+               console.log('video ended',this.nextVideoUrl);
+
+               window.location.replace(this.nextVideoUrl);
+            });
         }
     }
 </script>
