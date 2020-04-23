@@ -4,10 +4,11 @@
     <b-container>
         <section>
            <h2>video player</h2>
-            <video width="1000" height="400" controls>
+            {{--<video width="1000" height="400" controls>
                 <source src="{{asset('example.mp4')}}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
+            </video>--}}
+            <video-player :video="{{$video}}"></video-player>
         </section>
 
         <section class="mb-5 pt-5 text-center">
