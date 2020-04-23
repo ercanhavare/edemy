@@ -15,7 +15,7 @@ class SeriesController extends Controller
     public function index()
     {
         $series = Series::paginate(15);
-        return view('front.series.index',compact('series'));
+        return view('front.series.index', compact('series'));
     }
 
     /**
@@ -31,7 +31,7 @@ class SeriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,18 +42,18 @@ class SeriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Series  $series
+     * @param \App\Series $series
      * @return \Illuminate\Http\Response
      */
     public function show(Series $series)
     {
-        return view('front.series.show',compact('series'));
+        return view('front.series.show', compact('series'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Series  $series
+     * @param \App\Series $series
      * @return \Illuminate\Http\Response
      */
     public function edit(Series $series)
@@ -64,8 +64,8 @@ class SeriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Series  $series
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Series $series
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Series $series)
@@ -76,7 +76,7 @@ class SeriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Series  $series
+     * @param \App\Series $series
      * @return \Illuminate\Http\Response
      */
     public function destroy(Series $series)
@@ -84,13 +84,28 @@ class SeriesController extends Controller
         //
     }
 
-    public function episode(Series $series,$episode_number)
+    public function episode(Series $series, $episode_number)
     {
-        $video = $series->videos()->where('episode_number',$episode_number)->first();
-        $next_video = $series->videos()->where('episode_number',$episode_number+1)->first();
+        $video = $series->videos()->where('episode_number', $episode_number)->first();
+        $next_video = $series->videos()->where('episode_number', $episode_number + 1)->first();
 
         $next_video_url = $next_video->url ?? null;
 
-        return view('front.series.video',compact('series','episode_number','video','next_video_url'));
+        $bread_crumbs = [
+            [
+                'text' => 'Browse',
+                'href' => route('series.show', $series)
+            ],
+            [
+                'text' => $series->title,
+                'href' => route('series.show', $series)
+            ],
+            [
+                'text' => $video->title,
+                'active' => true
+            ]
+        ];
+
+        return view('front.series.video', compact('series', 'episode_number', 'video', 'next_video_url','bread_crumbs'));
     }
 }
