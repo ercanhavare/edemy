@@ -14,7 +14,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = Series::paginate(10);
+        $series = Series::paginate(15);
         return view('front.series.index',compact('series'));
     }
 
@@ -82,5 +82,11 @@ class SeriesController extends Controller
     public function destroy(Series $series)
     {
         //
+    }
+
+    public function episode(Series $series,$episode_number)
+    {
+        $video = $series->videos()->where('episode_number',$episode_number)->first();
+        return view('front.series.video',compact('series','episode_number','video'));
     }
 }

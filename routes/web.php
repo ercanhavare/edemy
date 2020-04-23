@@ -24,3 +24,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/series', 'SeriesController');
+Route::get('/series/{series}/episode/{episodeNumber}','SeriesController@episode')->name('series.episode');

@@ -1927,6 +1927,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Episodes",
   props: ['videos']
@@ -79878,41 +79880,49 @@ var render = function() {
     "div",
     _vm._l(_vm.videos, function(video, index) {
       return _c(
-        "b-card",
+        "a",
         {
           key: index,
-          staticClass: "overflow-hidden mb-2",
-          attrs: { "no-body": "" }
+          staticClass: "text-decoration-none",
+          staticStyle: { color: "black" },
+          attrs: { href: video.url }
         },
         [
           _c(
-            "b-row",
-            { attrs: { "no-gutters": "" } },
+            "b-card",
+            { staticClass: "overflow-hidden mb-2", attrs: { "no-body": "" } },
             [
               _c(
-                "b-col",
-                { attrs: { md: "2" } },
-                [_c("b-button", [_vm._v(_vm._s(video.episode_number))])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { md: "10" } },
+                "b-row",
+                { attrs: { "no-gutters": "" } },
                 [
                   _c(
-                    "b-card-body",
-                    { attrs: { title: "video.title" } },
+                    "b-col",
+                    { attrs: { md: "2" } },
+                    [_c("b-button", [_vm._v(_vm._s(video.episode_number))])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { md: "10" } },
                     [
-                      _c("b-card-text", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(
-                              video.description.substring(0, 200) + " ..."
-                            ) +
-                            "\n                    "
-                        )
-                      ])
+                      _c(
+                        "b-card-body",
+                        { attrs: { title: video.title } },
+                        [
+                          _c("b-card-text", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(
+                                  video.description.substring(0, 200) + " ..."
+                                ) +
+                                "\n                        "
+                            )
+                          ])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -79926,7 +79936,7 @@ var render = function() {
         1
       )
     }),
-    1
+    0
   )
 }
 var staticRenderFns = []
