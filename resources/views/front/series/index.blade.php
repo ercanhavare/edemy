@@ -8,13 +8,15 @@
                     <b-row>
                         @foreach($series as $s)
                             <b-col cols="4">
-                                <b-card title="{{$s->title}}" class="text-center" img-src="https://picsum.photos/300/300/?image=41"
-                                        img-alt="Image" img-top>
+                                <b-card title="{{$s->title}}" class="text-center"
+                                        {{--img-src="https://picsum.photos/300/300/?image=41"--}}
+                                        img-src="{{$s->image ? asset('storage/'.$s->image) : 'https://picsum.photos/300/300/?image=41'}}" img-alt="Image" img-top>
                                     <b-card-text>
-                                        {{\Illuminate\Support\Str::words($s->description,3)}}
+                                        {!! \Illuminate\Support\Str::words($s->description,3) !!}
                                     </b-card-text>
                                     <template v-slot:footer>
-                                        <b-button href="{{route('series.show',$s->id)}}" variant="primary">Play</b-button>
+                                        <b-button href="{{route('series.show',$s->id)}}" variant="primary">Play
+                                        </b-button>
                                     </template>
                                 </b-card>
                             </b-col>
